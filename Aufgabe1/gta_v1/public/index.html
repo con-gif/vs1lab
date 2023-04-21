@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoTagApp</title>
     <link rel="stylesheet" href="./stylesheets/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -21,15 +20,16 @@
         </nav>
     </header>
 
-    <main class="main row">
-        <section class="main__tagging tagging">
+    <main id="main" class="main row">
+        <section class="main__tagging tagging col-4 responsive_col">
             <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
 
-                <fieldset class="tag-fieldset fieldset">
+                <fieldset>
                     <legend>Add a new GeoTag</legend>
+
                     <label for="latitude_in">Latitude:</label>
                     <input type="text" id="latitude_in" name="latitude" size="10" readonly>
                     
@@ -37,13 +37,12 @@
                     <input type="text" id="longtitude_in" name="longtitude" size="10" readonly>
                     
                     <label for="name_in">Name:</label>
-                    <input type="text" id="name_in" name="text_input_name" size="10" placeholder="e.g. Central Berlin" maxlength="10" required>
+                    <input type="text" id="name_in"  size="10" placeholder="e.g. Central Berlin" maxlength="10" pattern="[A-z]" required>
                     
-                    <label for="text_input_Haschtag">Hashtag:</label>
-                    <input type="text" id="hashtag_in" name="text_input_Haschtag" size="11" placeholder="e.g. #ber"
-                     pattern="[#]+[A-Za-z]">
+                    <label for="hashtag_in">Hashtag:</label>
+                    <input type="text" id="hashtag_in"  size="11" placeholder="e.g. #ber" maxlength="11" pattern="[#]+[A-Za-z]">
                     
-                    <input type="submit" name="add Tag">
+                    <input type="submit" id="add_button" name="add Tag">
                 </fieldset>
 
             </form>
@@ -51,31 +50,34 @@
 
         </section>
 
-        <section class="main__discovery discovery row" >
+        <section class="main__discovery discovery col-8 responsive_col" >
             <h2 class="discovery__title" >Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
 
-                <fieldset class = "discovery-fieldset fieldset">
+                <fieldset>
+
                     <legend>Search</legend>
-                    <label for="query_in">Search term or Keywords:</label>
-                    <input type="search" id="query_in" name="text_input_query" size="10" placeholder="e.g. Berlin">
-                    <input type="submit" name="search_query_submit">
+                    
+                    <label id="search" for="query_in">Search term or Keywords:</label>
+                    <input type="search" id="query_in" name="text_input_query" size="10" placeholder="e.g. Berlin" required>
+
+                    <input type="submit" id="discovery_buton" name="search_query_submit">
                 </fieldset>
 
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
-            <div class="discovery__wrapper ">
-                <div class="discovery__taglist">
+            <div class="discovery__wrapper row">
+                <div class="discovery__taglist responsive_col">
                     <ul class="discovery__results" id="discoveryResults">
                         <li>Castle (49.01379, 8.404435) #sight</li>
                         <li>IWI (49.01379, 8.390071) #edu</li>
                     </ul>
                 </div>
 
-                <div class="discovery__map">
+                <div class="discovery__map col-8 responsive_col">
                     <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
                     <span>Result map</span>
                 </div>

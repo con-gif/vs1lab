@@ -38,20 +38,52 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  
+
 }
 
 a {
   color: var(--link-color);
 }
 
-/* ### TODO ### Styles for other HTML elements */
+/* Styles for other HTML elements */
 
-/* ... your code here ... */
 label {
-  display:block;
-  padding:10px;
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  display: block;
+  /*Abstand zwischen dem Inhalt eines Elements und seiner Umrandung.*/
+  padding: 10px;
 }
+
+legend {
+  /*Abstand zwischen der linken Seite eines Elements und den umgebenden Elementen definiert */
+  margin-left: 13px;
+  font-size: 14px;
+  /*"bold"*/
+  font-weight: 700;
+}
+
+input {
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  display: block;
+  /*font size*/
+  font-size: 15px;
+  /* max Breite - 20px*/
+  width: calc(100% - 20px);
+  /* margin(Abstand) top, right, left, bottom */
+  margin: 0.25rem 0.25rem 0.7rem 0.25rem;
+  /* padding für top und bottom */
+  padding: 0.5rem 0.5rem;
+}
+
+fieldset {
+  /*Abstand zwischen dem Inhalt eines Elements und seinem Rand */
+  padding: 10px;
+  /* margin(Abstand) top, right, left, bottom */
+  margin: 0 0 0 10px;
+  /* border des Elements 1px breit, solid,  */
+  border: 1px solid var(--border-color);
+}
+
 
 
 
@@ -114,97 +146,71 @@ label {
 
 
 /* ### TODO ### Styles for Header Component */
-header {
+.header {
   display: flex;
-  justify-content: space-between;
+  /*Abstand zwischen Elementen in einem Container
+  justify-content: space-between; */
   padding: 2%;
   background-color: var(--background-color);
   border-bottom: solid 1px var(--border-color);
-  align-items:center;
+  align-items: center;
 }
-.header__image{
-  height: 4em;
+
+.header__image {
+  width: 50px;
+  height: auto;
+}
+
+.header__title {
+  /* den Namen zentrieren */
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 
-/* ### TODO ### Styles for Main Component */
+/* Styles for Main Component */
 .main {
-  padding: 40px 40px 40px 40px;
-  gap: 100px;
-  margin-bottom: 100px;
-}
-input{
-  height: 3em;
-  width: 15vw;
-  margin: 10px;
-}
-.fieldset{
-  padding:10px;
-  border-color: var(--border-color);
-  border-width: 1px;
+  /*Padding zwischen Header und Main*/
+  padding: 10px;
+  /*Abstand zwischen Tagging und Discovery Containern */
+  gap: 20px;
 }
 
+/* Styles for Tagging component */
 
+/* Styles for Discovery component */
 
-
-
-/* ### TODO ### Styles for Tagging component */
-.tag-fieldset{
-  display:flex;
+/*.main__discovery {
+  display: 10px 10px 10px 10px;
   flex-direction: column;
-  border-color: solid 1px var(--border-color);
-  
+  flex-flow: wrap;
 }
-
-
-/* ### TODO ### Styles for Discovery component */
-.main__discovery{
-  display:flex;
-  flex-flow:wrap;
-  flex-direction: column;
-
-}
-
-.discover-fieldset{
-  display:flex;
-  flex-direction: column;
-  border-color: solid 1px var(--border-color);
-}
-
-.discovery__wrapper{
-  display:flex; 
-  flex-direction: row;
-}
-
-.discovery__results li{
-  min-height: 2em;
+*/
+.discovery__results li {
+  /*min-height: 2em;*/
   background-color: var(--background-color);
   color: var(--link-color);
-  border: 1px solid var(--border-color);
+  border: 1px solid;
   list-style-type: none;
   justify-content: space-around;
 }
-.discovery__taglist{
-  width:20%;
+
+.discovery__taglist {
+  width: 20%;
   padding: 2%;
-  
-  
 }
 
-
-.discovery__map{
+.discovery__map img {
   display: block;
-  height: auto;
-  width: auto;
-  min-height: 40vh;
   padding: 2%;
+  width: 80%;
+  height: auto;
 }
 
+/*Styles for Footer Component */
 
-/* ### TODO ### Styles for Footer Component */
-
-footer {
-  display: flex;
+.footer {
   align-items: center;
   padding: 2%;
   background-color: var(--background-color)
@@ -213,35 +219,38 @@ footer {
 
 /* ### TODO ### Media Queries */
 
-@media screen and (max-width: 1000px) and (orientation:portrait){
-
-
-@media(max-width: 1000px){
-  input{
-    width: 100% !important;
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
   }
-  .main__tagging{
-    width:100px;
+  /* in index.html überall wo responsive_col von hinten steht, breite anpassen*/
+  .responsive_col {
+    width: 100%;
   }
-  .main__discovery {
-    width:100%;
-    margin-top:20px;
-  }
-  .main{
-    display:block;
-  }
-  .discovery__wrapper{
-    display:block;
-  }
+/*
   .discovery__taglist{
     width:100px !important;
-    margin: 0;
-    padding: 0;
+    margin: 5px;
+    padding: 5px;
+  }
+  */
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  .main {
+    display: block;
+    /*Abstand zwischen Header und Main  */
+    padding: 10px;
+  }
+
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  .discovery__wrapper {
+    display: block;
+    /*Abstand zwischen Wrapper und Discovery(Castle-Submit)*/
+    margin-top: 5px;
   }
   
-  #mapview {
-  width: 80%;
-  height: auto;
-}
-}
+  /*Abstand zwischen Discovery und Tagging Containern */
+  .main__discovery {
+    display: block;
+    margin-top: 10px;
+  }
 }
