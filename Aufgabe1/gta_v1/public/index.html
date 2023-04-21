@@ -27,54 +27,47 @@
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
-                <!-- 
-                    Da wir verschiedene Eingabeelemente haben(latitude,longitude etc..) verwenden wir das fieldset tag um diese alle zu gruppieren und das formular begrenzen.
-                    Das legend tag wird verwendet um eine beschreibung für das fieldset zu geben.
-                    Das label tag wird verwendet um eine beschreibung für das input element zu geben.
-                    Das input tag wird verwendet um ein Eingabeelement zu erstellen.
-                    fieldsettagging und fieldsetdiscovery sind die css klassen die wir in der style.css definiert haben.
-                -->
-                <fieldset class="fieldsetTagging fieldset">
-                    <legend>Enter new GeoTag</legend>
-                    <label for="latitude">Latitude:</label> 
-                    <input id="latitude" name="latitude" placeholder="49.01379" required /> <br>
 
-                    <label for="longitude">Longitude:</label>
-                    <input id="longitude" name="longitude" placeholder="8.404435" required /> <br>
-
-                    <label for="name">Name:</label>
-                    <input id="name" name="name" placeholder="Castle" required /> <br>
-
-                    <label for="hashtags">Hashtag:</label>
-                    <input id="hashtags" type="text" name="hashtags" maxlength="11" pattern="#([A-z])+" placeholder="# + max. 10 letters" required /> <br>
-
-                    <input id="addTag" type="submit" value="Submit" > <br>
+                <fieldset class="tag-fieldset fieldset">
+                    <legend>Add a new GeoTag</legend>
+                    <label for="latitude_in">Latitude:</label>
+                    <input type="text" id="latitude_in" name="latitude" size="10" readonly>
+                    
+                    <label for="longtitude_in">Longtitude:</label>
+                    <input type="text" id="longtitude_in" name="longtitude" size="10" readonly>
+                    
+                    <label for="name_in">Name:</label>
+                    <input type="text" id="name_in" name="text_input_name" size="10" placeholder="e.g. Central Berlin" maxlength="10" required>
+                    
+                    <label for="text_input_Haschtag">Hashtag:</label>
+                    <input type="text" id="hashtag_in" name="text_input_Haschtag" size="11" placeholder="e.g. #ber"
+                     pattern="[#]+[A-Za-z]">
+                    
+                    <input type="submit" name="add Tag">
                 </fieldset>
-                
-
 
             </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
 
         </section>
 
-        <section class="main__discovery discovery col-10">
-            <h2 class="discovery__title">Discovery</h2>
+        <section class="main__discovery discovery row" >
+            <h2 class="discovery__title" >Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
 
-                <fieldset class="fieldsetDiscovery fieldset">
-                    <legend> Search</legend>
-                    <label for="searchBar"> Search term or keywords: </label> <br>
-                    <input id="searchBar" placeholder="e.g Karlsruhe"> <br>
-                    <button type="submit" id="searchButton">Search</button>
+                <fieldset class = "discovery-fieldset fieldset">
+                    <legend>Search</legend>
+                    <label for="query_in">Search term or Keywords:</label>
+                    <input type="search" id="query_in" name="text_input_query" size="10" placeholder="e.g. Berlin">
+                    <input type="submit" name="search_query_submit">
                 </fieldset>
 
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
-            <!-- row notwendig -->
-            <div class="discovery__wrapper row">
+
+            <div class="discovery__wrapper ">
                 <div class="discovery__taglist">
                     <ul class="discovery__results" id="discoveryResults">
                         <li>Castle (49.01379, 8.404435) #sight</li>
@@ -83,11 +76,12 @@
                 </div>
 
                 <div class="discovery__map">
-                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" /> <br>
-                    <span>Result map</span> 
+                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
+                    <span>Result map</span>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer class="footer">

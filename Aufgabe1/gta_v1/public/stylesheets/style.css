@@ -38,6 +38,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
 }
 
 a {
@@ -46,28 +47,13 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-input {
-  display: block;
-  height: 30px;
-  width: 200px;
-  border: solid;
-  border-color: var(--border-color);
-  border-width: 1px;
-  padding-left: 10px;
-}
-
+/* ... your code here ... */
 label {
-  display: block;
+  display:block;
+  padding:10px;
 }
 
-button {
-  height: 30px;
-  width: 200px;
-  border: solid;
-  border-color: var(--border-color);
-  border-width: 1px;
-  
-}
+
 
 /* Grid styles (no changes required) */
 
@@ -128,114 +114,134 @@ button {
 
 
 /* ### TODO ### Styles for Header Component */
-
-.header {
-  background-color: var(--background-color);
+header {
   display: flex;
   justify-content: space-between;
-  text-align: center;
-  padding: 40px;
-  height: 100px;
-  border-bottom: var(--border-color) 1px solid;
+  padding: 2%;
+  background-color: var(--background-color);
+  border-bottom: solid 1px var(--border-color);
+  align-items:center;
 }
-
-.header__image {
-  height: 300%;
+.header__image{
+  height: 4em;
 }
 
 
 /* ### TODO ### Styles for Main Component */
-
 .main {
   padding: 40px 40px 40px 40px;
   gap: 100px;
   margin-bottom: 100px;
 }
-/* hier ist fieldset definiert für fieldsettagging und fieldsetdiscovery*/
-.fieldset {
-  padding: 10px;
+input{
+  height: 3em;
+  width: 15vw;
+  margin: 10px;
+}
+.fieldset{
+  padding:10px;
   border-color: var(--border-color);
   border-width: 1px;
 }
 
 
-/* ### TODO ### Styles for Tagging component */
 
-#latitude, #longitude {
-  width: 100%;
+
+
+/* ### TODO ### Styles for Tagging component */
+.tag-fieldset{
+  display:flex;
+  flex-direction: column;
+  border-color: solid 1px var(--border-color);
   
 }
 
 
 /* ### TODO ### Styles for Discovery component */
+.main__discovery{
+  display:flex;
+  flex-flow:wrap;
+  flex-direction: column;
 
-.discovery__wrapper {
-  margin-top: 30px;
 }
 
+.discover-fieldset{
+  display:flex;
+  flex-direction: column;
+  border-color: solid 1px var(--border-color);
+}
+
+.discovery__wrapper{
+  display:flex; 
+  flex-direction: row;
+}
+
+.discovery__results li{
+  min-height: 2em;
+  background-color: var(--background-color);
+  color: var(--link-color);
+  border: 1px solid var(--border-color);
+  list-style-type: none;
+  justify-content: space-around;
+}
+.discovery__taglist{
+  width:20%;
+  padding: 2%;
+  
+  
+}
+
+
+.discovery__map{
+  display: block;
+  height: auto;
+  width: auto;
+  min-height: 40vh;
+  padding: 2%;
+}
 
 
 /* ### TODO ### Styles for Footer Component */
 
-.footer {
-  background-color: var(--background-color);
-  padding: 40px;
-  height: 100px;
-  width: 100%;
-  border-top: var(--border-color) 1px solid;
-  position: fixed;
-  bottom: 0;
+footer {
+  display: flex;
+  align-items: center;
+  padding: 2%;
+  background-color: var(--background-color)
 }
+
+
 /* ### TODO ### Media Queries */
 
-@media (max-width: 1500px) {
+@media screen and (max-width: 1000px) and (orientation:portrait){
 
-    .discovery__wrapper {
-        display: block;
-    }
 
-    .discovery__taglist {
-        width: 100%;
-    }
-
-    li {
-        margin: 0 0 20px 0 !important;
-    }
+@media(max-width: 1000px){
+  input{
+    width: 100% !important;
+  }
+  .main__tagging{
+    width:100px;
+  }
+  .main__discovery {
+    width:100%;
+    margin-top:20px;
+  }
+  .main{
+    display:block;
+  }
+  .discovery__wrapper{
+    display:block;
+  }
+  .discovery__taglist{
+    width:100px !important;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #mapview {
+  width: 80%;
+  height: auto;
 }
-
-@media screen and (max-width: 1000px) {
-
-    @media (max-width: 1000px) {
-        input {
-            width: 100% !important;
-        }
-
-        .main__tagging {
-            width: 100%;
-        }
-
-        .main__discovery {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .main {
-            display: block;
-        }
-
-        .discovery__wrapper {
-            display: block;
-        }
-
-        .discovery__taglist {
-            width: 100% !important;
-            margin: 0;
-            padding: 0;
-        }
-
-        #mapView {
-          width: 80%;
-          height: auto;
-        }
-    }
+}
 }
