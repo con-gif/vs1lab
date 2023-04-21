@@ -79,7 +79,7 @@ fieldset {
   /*Abstand zwischen dem Inhalt eines Elements und seinem Rand */
   padding: 10px;
   /* margin(Abstand) top, right, left, bottom */
-  margin: 0 0 0 10px;
+  margin: 10px 0 0 10px;
   /* border des Elements 1px breit, solid,  */
   border: 1px solid var(--border-color);
 }
@@ -160,7 +160,13 @@ fieldset {
   width: 50px;
   height: auto;
 }
+.header__navigation{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2%;
 
+}
 .header__title {
   /* den Namen zentrieren */
   width: 100%;
