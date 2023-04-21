@@ -150,7 +150,7 @@ fieldset {
   display: flex;
   /*Abstand zwischen Elementen in einem Container
   justify-content: space-between; */
-  padding: 2%;
+  padding: 0.5%;
   background-color: var(--background-color);
   border-bottom: solid 1px var(--border-color);
   align-items: center;
@@ -219,7 +219,7 @@ fieldset {
 
 .footer {
   align-items: center;
-  padding: 2%;
+  padding: 1%;
   background-color: var(--background-color)
 }
 
