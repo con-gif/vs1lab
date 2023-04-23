@@ -191,12 +191,18 @@ fieldset {
 
 /* Styles for Discovery component */
 
+
 /*.main__discovery {
   display: 10px 10px 10px 10px;
   flex-direction: column;
   flex-flow: wrap;
 }
 */
+
+#discovery_buton:hover {
+  background-color: #0d967857; /* Change the background color of the button when hovering */
+}
+
 .discovery__results li {
   /*min-height: 2em;*/
   background-color: var(--background-color);
