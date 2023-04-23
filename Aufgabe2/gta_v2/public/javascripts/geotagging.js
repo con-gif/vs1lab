@@ -63,7 +63,8 @@ class LocationHelper {
  * A class to help using the MapQuest map service.
  */
 class MapManager {
-    #apiKey = '';
+    /* besorgt am 22.04.2023*/
+    #apiKey = 'HltU54BEnKkv8JTPR4OPpEmjzjtUNOTs';
 
     /**
      * Create a new MapManager instance.
@@ -103,8 +104,17 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 // ... your code here ...
-
+function updateLocation () {
+    LocationHelper.findLocation(function (locationHelper) {
+        document.getElementById("latitude_in").setAttribute("value", locationHelper.latitude);
+        document.getElementById("longtitude_in").setAttribute("value", locationHelper.longitude);
+    })
+}
 // Wait for the page to fully load its DOM content, then call updateLocation
+document.addEventListener("DOMContentLoaded", () => {updateLocation();});
+
+/*
 document.addEventListener("DOMContentLoaded", () => {
     alert("Please change the script 'geotagging.js'");
 });
+*/
