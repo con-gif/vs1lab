@@ -107,9 +107,13 @@ class MapManager {
 function updateLocation () {
     //die Funktion ruft die Methode findLocation auf
     LocationHelper.findLocation(function (locationHelper) {
+<<<<<<< HEAD
         //api key
         const mapManager = new MapManager('HltU54BEnKkv8JTPR4OPpEmjzjtUNOTs');
         
+=======
+        const mapManager = new MapManager('HltU54BEnKkv8JTPR4OPpEmjzjtUNOTs');
+>>>>>>> 035028b6246a0c046315a6378c9c9c2e62223b64
         document.getElementById("latitude_in").setAttribute("value", locationHelper.latitude);
         document.getElementById("longtitude_in").setAttribute("value", locationHelper.longitude);
         document.getElementById("latitude_hidden").setAttribute("value", locationHelper.latitude);
