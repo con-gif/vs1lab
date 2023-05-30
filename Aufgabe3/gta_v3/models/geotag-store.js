@@ -28,10 +28,15 @@ class InMemoryGeoTagStore{
         addGeoTag = (geotag) => {
 
 
-    }
+ }
         removeGeoTag = (name) => {
 
-    }
 }
+        getNearbyGeoTags = (location, radius) => {
 
+}   
+        searchNearbyGeoTags = (location, radius, keyword) => {
+
+}
+}
 module.exports = InMemoryGeoTagStore
