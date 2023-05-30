@@ -24,9 +24,14 @@
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
 class InMemoryGeoTagStore{
+    static a = [];
+        addGeoTag = (geotag) => {
 
-    // TODO: ... your code here ...
 
+    }
+        removeGeoTag = (name) => {
+
+    }
 }
 
 module.exports = InMemoryGeoTagStore

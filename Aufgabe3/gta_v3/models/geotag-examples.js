@@ -8,9 +8,10 @@
 /**
  * A class representing example geoTags at HKA
  * 
- * TODO: populate your InMemoryGeoTagStore with these tags
  * 
  */
+
+const GeoTag = require('./geotag');
 class GeoTagExamples {
     /**
      * Provides some geoTag data
