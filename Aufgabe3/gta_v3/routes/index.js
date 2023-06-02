@@ -30,6 +30,7 @@ const GeoTag = require('../models/geotag');
  */
 // eslint-disable-next-line no-unused-vars
 const GeoTagStore = require('../models/geotag-store');
+var geoTagStore = new GeoTagStore();
 
 /**
  * Route '/' for HTTP 'GET' requests.
@@ -42,9 +43,14 @@ const GeoTagStore = require('../models/geotag-store');
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  const geoTags = geoTagStore.geoTags;
+  res.render('index', {
+    taglist: geoTags,
+    set_latitude: req.body["latitude"],
+    set_longitude: req.body["longitude"],
+    set_mapView: JSON.stringify(geoTags)
+  });
 });
-
 /**
  * Route '/tagging' for HTTP 'POST' requests.
  * (http://expressjs.com/de/4x/api.html#app.post.method)
@@ -61,6 +67,18 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
+router.post('/tagging', (req, res) => {
+  const newGeoTag = new GeoTag(req.body.latitude_in , req.body.longitude_in, req.body.name_in, req.body.hashtag_in);
+  geoTagStore.addGeoTag(newGeoTag);
+  const geoTags = geoTagStore.getNearbyGeoTags(newGeoTag.latitude, newGeoTag.longitude);
+  res.render('index', {
+    taglist: geoTags,
+    set_latitude: req.body["latitude_in"],
+    set_longitude: req.body["longitude_in"],
+    set_mapView: JSON.stringify(geoTags)
+  });
+});
+
 
 /**
  * Route '/discovery' for HTTP 'POST' requests.
@@ -80,4 +98,16 @@ router.get('/', (req, res) => {
 
 // TODO: ... your code here ...
 
+router.post('/discovery', (req, res) => {
+  let keyword = req.body.query_in;
+
+  let nearbyGeoTags = geoTagStore.searchNearbyGeoTags(keyword);
+
+  res.render('index', { 
+      taglist: nearbyGeoTags, 
+      userLatitude: req.body.latitude_hidden, 
+      userLongitude: req.body.longtitude_hidden, 
+      mapTaglist: JSON.stringify(nearbyGeoTags) 
+  })
+});
 module.exports = router;

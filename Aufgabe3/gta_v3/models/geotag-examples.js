@@ -11,11 +11,12 @@
  * 
  */
 
-const GeoTag = require('./geotag');
+const Geotag = require("./geotag");
 class GeoTagExamples {
     /**
      * Provides some geoTag data
      */
+    
     static get tagList() {
         return [
             ['Castle', 49.013790, 8.404435, '#sight'],

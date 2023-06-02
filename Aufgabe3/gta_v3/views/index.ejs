@@ -31,16 +31,16 @@
                     <legend>Add a new GeoTag</legend>
 
                     <label for="latitude_in">Latitude:</label>
-                    <input type="text" id="latitude_in" name="latitude" value="345" readonly>
+                    <input type="text" id="latitude_in" name="latitude" value=<%= userLatitude %> readonly>
                     
                     <label for="longtitude_in">Longtitude:</label>
-                    <input type="text" id="longtitude_in" name="longtitude" value="123" readonly>
+                    <input type="text" id="longtitude_in" name="longtitude" value=<%= userLongitude %> readonly>
                     
                     <label for="name_in">Name:</label>
                     <input type="text" id="name_in"  placeholder="e.g. Central Berlin" maxlength="10" pattern="[A-Za-z]{1,10}" required>
                     
                     <label for="hashtag_in">Hashtag:</label>
-                    <input type="text" id="hashtag_in"  size="11" placeholder="e.g. #ber" maxlength="11" pattern="[#]+[A-Za-z]">
+                    <input type="text" id="hashtag_in"  size="11" placeholder="e.g. #ber" maxlength="11" pattern="[#]+[A-Za-z]{1,10}">
                     
                     <input type="submit" id="add_button" name="add Tag">
                 </fieldset>
