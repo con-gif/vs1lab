@@ -51,20 +51,28 @@ class InMemoryGeoTagStore{
             });
     }
 
-    getNearbyGeoTags(latitude, longitude){
-        var arrTemp = [];
-        for( var i = 0; i < this.geotags.length; i++) {
-            var latitudeTemp = this.geotags[i].latitude;
-            var longitudeTemp = this.geotags[i].longitude;
-            var distance = Math.sqrt(Math.pow(latitudeTemp - latitude, 2) + Math.pow(longitudeTemp - longitude, 2));
-            if(distance <= 15) {
-                arrTemp.push(this.geotags[i]);
-            } 
+    getNearbyGeoTags(latitudeIn, longitudeIn) {
+        let arrTemp = [];
+        for (let i = 0; i < this.#geotags.length; i++) {
+          let latitudeTemp = this.#geotags[i].latitude;
+          let longitudeTemp = this.#geotags[i].longitude;
+          let dLat = (latitudeTemp * Math.PI) / 180 - (latitudeIn * Math.PI) / 180;
+          let dLon = ((longitudeTemp - longitudeIn) * Math.PI) / 180;
+          let distance =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos((latitudeIn * Math.PI) / 180) *
+              Math.cos((latitudeTemp * Math.PI) / 180) *
+              Math.sin(dLon / 2) *
+              Math.sin(dLon / 2);
+          let c = 2 * Math.atan2(Math.sqrt(distance), Math.sqrt(1 - distance));
+          let d = 6371 * c;
+          if (d <= 150) {
+            arrTemp.push(this.#geotags[i]);
+          }
+          console.log(d);
         }
         return arrTemp;
-
-    }    
-
+      }
     
     searchNearbyGeoTags(keyword, latitude, longitude){
         var NearbyGeoTags = this.getNearbyGeoTags(latitude, longitude)
