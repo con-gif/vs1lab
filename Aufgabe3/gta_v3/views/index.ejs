@@ -31,18 +31,18 @@
                     <legend>Add a new GeoTag</legend>
 
                     <label for="latitude_in">Latitude:</label>
-                    <input type="text" id="latitude_in" name="latitude" value="345" readonly>
+                    <input type="text" id="latitude_in" name="latitude_in" placeholder="49.01379" value="" readonly>
                     
-                    <label for="longtitude_in">Longtitude:</label>
-                    <input type="text" id="longtitude_in" name="longtitude" value="123" readonly>
+                    <label for="longitude_in">Longitude:</label>
+                    <input type="text" id="longitude_in" name="longitude_in" placeholder="8.390071" value="" readonly>
                     
                     <label for="name_in">Name:</label>
-                    <input type="text" id="name_in"  placeholder="e.g. Central Berlin" maxlength="10" pattern="[A-Za-z]{1,10}" required>
+                    <input type="text" id="name_in" name="name_in"  placeholder="e.g. Central Berlin" maxlength="10" pattern="[A-Za-z]{1,10}" required>
                     
                     <label for="hashtag_in">Hashtag:</label>
-                    <input type="text" id="hashtag_in"  size="11" placeholder="e.g. #ber" maxlength="11" pattern="[#]+[A-Za-z]">
+                    <input type="text" id="hashtag_in" name="hashtag_in" size="11" placeholder="e.g. #ber" maxlength="11" pattern="[#]+[A-Za-z]{1,10}">
                     
-                    <input type="submit" id="add_button" name="add Tag">
+                    <input type="submit" id="add_button" name="add_button" value="Add Tag">
                 </fieldset>
 
             </form>
@@ -60,18 +60,13 @@
 
                     <legend>Search</legend>
                     
-                    <label id="search" for="query_in">Search term or Keywords:</label>
-                    <input type="search" id="query_in" name="text_input_query" size="10" placeholder="e.g. Berlin" required>
+                    <label for="">Search term or Keywords:</label>
+                    <input type="text" id="query_in" name="query_in" size="10" placeholder="e.g. Berlin" required>
 
-                    <input type="submit" id="discovery_buton" name="search_query_submit">
-                    <input type="hidden" id="latitude_hidden" name="latitude" value="" >
-                    <input type="hidden" id="longtitude_hidden" name="longtitude" value="" >
-                    <input type="hidden" id="searchterm" value="" >
+                    <input type="submit" id="discovery_buton" name="discovery_buton" value = "Search">
 
-                    
-                    <input type="hidden" id="latitude_hidden" name="latitude" value="" >
-                    <input type="hidden" id="longtitude_hidden" name="longtitude" value="" >
-                    <input type="hidden" id="searchterm" value="" >
+                    <input type="hidden" id="latitude_hidden" name="latitude_hidden" value="" >
+                    <input type="hidden" id="longitude_hidden" name="longtitude_hidden" value="" >
                 </fieldset>
 
             </form>
@@ -102,6 +97,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./javascripts/geotagging.js"></script>
+    <script src="./javascripts/map-manager.js"></script>
+    <script src="./javascripts/location-helper.js"></script>
 </body>
 
 </html>
