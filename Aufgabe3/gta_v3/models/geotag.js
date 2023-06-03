@@ -11,20 +11,32 @@
  */
 class GeoTag {
 
-    latitude_in = '';
-    longitude_in = '';
-    name_in = '';
-    hashtag_in = '';
+    latitude_hidden;
+    longitude_hidden;
+    name_hidden = '';
+    hashtag_hidden = '';
 
     // TODO: ... your code here ...
-    constructor(latitude_in, longitude_in, name_in, hashtag_in) {
-        this.latitude = latitude_in;
-        this.longitude = longitude_in;
-        this.name = name_in;
-        this.hashtag = hashtag_in;
+    constructor(latitude, longitude, name, hashtag) {
+        this.latitude_hidden = latitude;
+        this.longitude_hidden = longitude;
+        this.name_hidden = name;
+        this.hashtag_hidden = hashtag;
         return this;
     }
-    
+
+    get latitude() {
+        return this.latitude_hidden;
+    }
+    get longitude() {
+        return this.longitude_hidden;
+    }
+    get name() {
+        return this.name_hidden;
+    }
+    get hashtag() {
+        return this.hashtag_hidden;
+    }   
 }
 
 module.exports = GeoTag;

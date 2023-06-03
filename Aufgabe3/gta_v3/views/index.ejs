@@ -31,10 +31,10 @@
                     <legend>Add a new GeoTag</legend>
 
                     <label for="latitude_in">Latitude:</label>
-                    <input type="text" id="latitude_in" name="latitude_in" placeholder="49.01379" value="" readonly>
+                    <input type="text" id="latitude_in" name="latitude_in" placeholder="49.01379" value="<%= set_latitude %>" readonly>
                     
                     <label for="longitude_in">Longitude:</label>
-                    <input type="text" id="longitude_in" name="longitude_in" placeholder="8.390071" value="" readonly>
+                    <input type="text" id="longitude_in" name="longitude_in" placeholder="8.390071" value="<%= set_longitude %>" readonly>
                     
                     <label for="name_in">Name:</label>
                     <input type="text" id="name_in" name="name_in"  placeholder="e.g. Central Berlin" maxlength="10" pattern="[A-Za-z]{1,10}" required>
@@ -65,8 +65,8 @@
 
                     <input type="submit" id="discovery_buton" name="discovery_buton" value = "Search">
 
-                    <input type="hidden" id="latitude_hidden" name="latitude_hidden" value="" >
-                    <input type="hidden" id="longitude_hidden" name="longtitude_hidden" value="" >
+                    <input type="hidden" id="latitude_hidden" name="latitude_hidden" value="%<= set_latitude %>" >
+                    <input type="hidden" id="longitude_hidden" name="longtitude_hidden" value="%<= set_longitude %>" >
                 </fieldset>
 
             </form>

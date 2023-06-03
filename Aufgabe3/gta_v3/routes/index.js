@@ -20,7 +20,7 @@ const router = express.Router();
  * TODO: implement the module in the file "../models/geotag.js"
  */
 // eslint-disable-next-line no-unused-vars
-const GeoTag = require('../models/geotag');
+const GeoTag = require('../models/geotag.js');
 
 /**
  * The module "geotag-store" exports a class GeoTagStore. 
@@ -29,8 +29,8 @@ const GeoTag = require('../models/geotag');
  * TODO: implement the module in the file "../models/geotag-store.js"
  */
 // eslint-disable-next-line no-unused-vars
-const GeoTagStore = require('../models/geotag-store');
-
+const GeoTagStore = require('../models/geotag-store.js');
+const store = new GeoTagStore();
 /**
  * Route '/' for HTTP 'GET' requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -42,7 +42,8 @@ const GeoTagStore = require('../models/geotag-store');
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  const geotags = store.geotags;
+  res.render('index', { taglist: geotags, set_latitude: "", set_longitude:"", set_mapView: JSON.stringify(geotags) })
 });
 
 /**

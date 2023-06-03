@@ -31,7 +31,7 @@ class InMemoryGeoTagStore{
     
     //tagliste aus geotag-examples.js
     constructor() {
-        var tagList = GeoTagExamples.tagList();
+        var tagList = GeoTagExamples.tagList;
         for(var i = 0; i < tagList.length; i++) {
             this.#geotags.push(new GeoTag(tagList[i][1], tagList[i][2], tagList[i][0], tagList[i][3]));
         }
@@ -52,11 +52,15 @@ class InMemoryGeoTagStore{
     }
     //TODO: getNearbyGeoTags
     getNearbyGeoTags(location, radius) {
+        
+
+        return nearbyGeoTags;
     }
 
     //TODO: searchNearbyGeoTags
     searchNearbyGeoTags(location, radius, keyword) {
     }
+    
     get geotags() {
         return this.#geotags;
     }   
