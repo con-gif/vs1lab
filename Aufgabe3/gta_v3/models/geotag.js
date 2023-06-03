@@ -11,7 +11,19 @@
  */
 class GeoTag {
 
+    latitude_in = '';
+    longitude_in = '';
+    name_in = '';
+    hashtag_in = '';
+
     // TODO: ... your code here ...
+    constructor(latitude_in, longitude_in, name_in, hashtag_in) {
+        this.latitude = latitude_in;
+        this.longitude = longitude_in;
+        this.name = name_in;
+        this.hashtag = hashtag_in;
+        return this;
+    }
     
 }
 
