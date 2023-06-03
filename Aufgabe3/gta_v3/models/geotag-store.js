@@ -23,10 +23,43 @@
  * - The proximity constrained is the same as for 'getNearbyGeoTags'.
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
+const GeoTagExamples = require('../models/geotag-examples.js');
+const GeoTag = require('../models/geotag.js');
 class InMemoryGeoTagStore{
+        // TODO: ... your code here ...
+    #geotags = [];
+    
+    //tagliste aus geotag-examples.js
+    constructor() {
+        var tagList = GeoTagExamples.tagList();
+        for(var i = 0; i < tagList.length; i++) {
+            this.#geotags.push(new GeoTag(tagList[i][1], tagList[i][2], tagList[i][0], tagList[i][3]));
+        }
+    }   
 
-    // TODO: ... your code here ...
+    addGeoTag(geoTag) {
+        if(geoTag instanceof GeoTag) {
+            this.#geotags.push(geoTag);
+        } else {
+            console.log("Not a GeoTag");
+        }
+    }
+
+    removeGeoTag(geoTag) {
+        this.#geotags = this.#geotags.filter(function(deleteTag) {
+            return deleteTag.name != geoTag.name;
+            });
+    }
+    //TODO: getNearbyGeoTags
+    getNearbyGeoTags(location, radius) {
+    }
+
+    //TODO: searchNearbyGeoTags
+    searchNearbyGeoTags(location, radius, keyword) {
+    }
+    get geotags() {
+        return this.#geotags;
+    }   
 
 }
-
 module.exports = InMemoryGeoTagStore
