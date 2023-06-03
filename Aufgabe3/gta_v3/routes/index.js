@@ -62,7 +62,12 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
-
+router.post('/tagging', (req, res) => {
+  const geotag = new GeoTag(req.body.latitude_in, req.body.longitude_in, req.body.name_in, req.body.hashtag_in);
+  store.addGeoTag(geotag);
+  const geotags = store.getNearbyGeoTags(geotag.latitude, geotag.longitude);
+  res.render('index', { taglist: geotags, set_latitude: req.body["latitude_in"], set_longitude: req.body["longitude_in"], set_mapView: JSON.stringify(geotags) })
+});
 /**
  * Route '/discovery' for HTTP 'POST' requests.
  * (http://expressjs.com/de/4x/api.html#app.post.method)

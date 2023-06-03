@@ -51,16 +51,34 @@ class InMemoryGeoTagStore{
             });
     }
     //TODO: getNearbyGeoTags
-    getNearbyGeoTags(location, radius) {
-        
+    getNearbyGeoTags(latitude, longitude){
+        var arrTemp = [];
+        for( var i = 0; i < this.geotags.length; i++) {
+            var latitudeTemp = this.geotags[i].latitude;
+            var longitudeTemp = this.geotags[i].longitude;
+            var distance = Math.sqrt(Math.pow(latitudeTemp - latitude, 2) + Math.pow(longitudeTemp - longitude, 2));
+            if(distance <= 15) {
+                arrTemp.push(this.geotags[i]);
+            } 
+        }
+        return arrTemp;
 
-        return nearbyGeoTags;
-    }
+    }    
 
     //TODO: searchNearbyGeoTags
-    searchNearbyGeoTags(location, radius, keyword) {
+    searchNearbyGeoTags(keyword, latitude, longitude){
+        var NearbyGeoTags = this.getNearbyGeoTags(latitude, longitude)
+        var arrTemp = []; 
+        for ( var i = 0; i < NearbyGeoTags.length; i++) {
+            const tempTag = NearbyGeoTags[i];
+            if(tempTag.hashtag.includes(keyword) ||tempTag.name.includes(keyword)) {
+                arrTemp.push(NearbyGeoTags[i]);
+            }
+        }
+        return arrTemp;
     }
-    
+
+
     get geotags() {
         return this.#geotags;
     }   
