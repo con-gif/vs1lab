@@ -85,5 +85,19 @@ router.post('/tagging', (req, res) => {
  */
 
 // TODO: ... your code here ...
+router.post('/discovery', (req, res) => {
+  let geotags;
+  if (req.body.query_in) {
+      geotags = store.searchNearbyGeoTags(req.body.query_in, req.body.latitude_hidden, req.body.longitude_hidden);
+  } else {
+      geotags = store.getNearbyGeoTags(req.body.latitude_hidden, req.body.longitude_hidden);
+  }
 
+  res.render('index', {
+      taglist: geotags,
+      set_latitude: req.body["latitude_hidden"],
+      set_longitude: req.body["longitude_hidden"],
+      set_mapView: JSON.stringify(geotags)
+  });
+});
 module.exports = router;

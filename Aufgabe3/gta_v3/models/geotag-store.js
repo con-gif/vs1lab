@@ -50,7 +50,7 @@ class InMemoryGeoTagStore{
             return deleteTag.name != geoTag.name;
             });
     }
-    //TODO: getNearbyGeoTags
+
     getNearbyGeoTags(latitude, longitude){
         var arrTemp = [];
         for( var i = 0; i < this.geotags.length; i++) {
@@ -65,13 +65,13 @@ class InMemoryGeoTagStore{
 
     }    
 
-    //TODO: searchNearbyGeoTags
+    
     searchNearbyGeoTags(keyword, latitude, longitude){
         var NearbyGeoTags = this.getNearbyGeoTags(latitude, longitude)
         var arrTemp = []; 
         for ( var i = 0; i < NearbyGeoTags.length; i++) {
             const tempTag = NearbyGeoTags[i];
-            if(tempTag.hashtag.includes(keyword) ||tempTag.name.includes(keyword)) {
+            if(tempTag.hashtag_hidden.includes(keyword) ||tempTag.name_hidden.includes(keyword)) {
                 arrTemp.push(NearbyGeoTags[i]);
             }
         }
