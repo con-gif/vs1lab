@@ -1,0 +1,269 @@
+/*
+  File origin: VS1LAB A1b  
+
+  CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
+  CSS variables used for clarity and themability (e.g. through SSR). 
+  Inherited box sizing used for ease of including 3rd party content-box components.
+*/
+
+/* Global styling */
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  /* This approach prevents issues with 3rd party content-box components */
+  box-sizing: inherit;
+}
+
+
+/* Variables (example: see declaration for "a" below) */
+
+:root {
+  --link-color: #00B7FF;
+  --background-color: #efefef;
+  --border-color: #cdcdcd;
+  --gray-color: #666;
+}
+
+
+/* HTML element styles */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+
+a {
+  color: var(--link-color);
+}
+
+/* Styles for other HTML elements */
+
+label {
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  display: block;
+  /*Abstand zwischen dem Inhalt eines Elements und seiner Umrandung.*/
+  padding: 10px;
+}
+
+legend {
+  /*Abstand zwischen der linken Seite eines Elements und den umgebenden Elementen definiert */
+  margin-left: 13px;
+  font-size: 14px;
+  /*"bold"*/
+  font-weight: 700;
+}
+
+input {
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  display: block;
+  /*font size*/
+  font-size: 15px;
+  /* max Breite - 20px*/
+  width: calc(100% - 20px);
+  /* margin(Abstand) top, right, left, bottom */
+  margin: 0.25rem 0.25rem 0.7rem 0.25rem;
+  /* padding für top und bottom */
+  padding: 0.5rem 0.5rem;
+}
+
+fieldset {
+  /*Abstand zwischen dem Inhalt eines Elements und seinem Rand */
+  padding: 10px;
+  /* margin(Abstand) top, right, left, bottom */
+  margin: 10px 0 0 10px;
+  /* border des Elements 1px breit, solid,  */
+  border: 1px solid var(--border-color);
+}
+
+
+
+
+/* Grid styles (no changes required) */
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.col-1 {
+  width: calc(8.33% - 1rem);
+}
+
+.col-2 {
+  width: calc(16.66% - 1rem);
+}
+
+.col-3 {
+  width: calc(25% - 1rem);
+}
+
+.col-4 {
+  width: calc(33.33% - 1rem);
+}
+
+.col-5 {
+  width: calc(41.66% - 1rem);
+}
+
+.col-6 {
+  width: calc(50% - 1rem);
+}
+
+.col-7 {
+  width: calc(58.33% - 1rem);
+}
+
+.col-8 {
+  width: calc(66.66% - 1rem);
+}
+
+.col-9 {
+  width: calc(75% - 1rem);
+}
+
+.col-10 {
+  width: calc(83.33% - 1rem);
+}
+
+.col-11 {
+  width: calc(91.66% - 1rem);
+}
+
+.col-12 {
+  width: calc(100% - 1rem);
+}
+
+
+/* ### TODO ### Styles for Header Component */
+.header {
+  display: flex;
+  /*Abstand zwischen Elementen in einem Container
+  justify-content: space-between; */
+  padding: 0.5%;
+  background-color: var(--background-color);
+  border-bottom: solid 1px var(--border-color);
+  align-items: center;
+}
+
+.header__image {
+  width: 50px;
+  height: auto;
+}
+.header__navigation{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2%;
+
+}
+.header__title {
+  /* den Namen zentrieren */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Styles for Main Component */
+.main {
+  /*Padding zwischen Header und Main*/
+  padding: 10px;
+  /*Abstand zwischen Tagging und Discovery Containern */
+  gap: 20px;
+}
+
+/* Styles for Tagging component */
+.discovery__taglist {
+  width: 20%;
+  padding: 2%;
+}
+
+/* Styles for Discovery component */
+
+
+/*.main__discovery {
+  display: 10px 10px 10px 10px;
+  flex-direction: column;
+  flex-flow: wrap;
+}
+*/
+
+#discovery_buton:hover {
+  background-color: #0d967857; /* Change the background color of the button when hovering */
+}
+
+.discovery__results li {
+  /*min-height: 2em;*/
+  background-color: var(--background-color);
+  color: var(--link-color);
+  border: 1px solid;
+  list-style-type: none;
+  justify-content: space-around;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.discovery__map img {
+  display: block;
+  padding: 2%;
+  width: 80%;
+  height: auto;
+}
+
+/*Styles for Footer Component */
+
+.footer {
+  align-items: center;
+  padding: 1%;
+  background-color: var(--background-color)
+}
+
+
+/* ### TODO ### Media Queries */
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+  /* in index.html überall wo responsive_col von hinten steht, breite anpassen*/
+  .responsive_col {
+    width: 100%;
+  }
+/*
+  .discovery__taglist{
+    width:100px !important;
+    margin: 5px;
+    padding: 5px;
+  }
+  */
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  .main {
+    display: block;
+    /*Abstand zwischen Header und Main  */
+    padding: 10px;
+  }
+
+  /*nimmt die gesamte verfügbare Breite und einen Zeilenumbruch davor und danach hat*/
+  .discovery__wrapper {
+    display: block;
+    /*Abstand zwischen Wrapper und Discovery(Castle-Submit)*/
+    margin-top: 5px;
+  }
+  
+  /*Abstand zwischen Discovery und Tagging Containern */
+  .main__discovery {
+    display: block;
+    margin-top: 10px;
+  }
+}

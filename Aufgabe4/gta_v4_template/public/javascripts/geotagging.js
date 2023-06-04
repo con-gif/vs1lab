@@ -34,6 +34,6 @@ function updateLocation (helper) { {
         document.getElementById("mapView").setAttribute("src", mapURL);
     }
 }
-if (document.getElementById("longitude_hidden").value) {
+if (JSON.stringify(document.getElementById("longitude_hidden").value)) {
     LocationHelper.findLocation(updateLocation);
-}
+  }
