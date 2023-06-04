@@ -11,10 +11,6 @@
  */
 class GeoTag {
 
-    latitude_hidden;
-    longitude_hidden;
-    name_hidden = '';
-    hashtag_hidden = '';
     constructor(latitude, longitude, name, hashtag) {
         this.latitude_hidden = latitude;
         this.longitude_hidden = longitude;

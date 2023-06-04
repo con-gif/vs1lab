@@ -19,8 +19,11 @@ function updateLocation (helper) { {
         let latitude = helper.latitude;
         let longitude = helper.longitude;
         
+        //tagging
         document.getElementById("latitude_in").setAttribute("value", latitude);
         document.getElementById("longitude_in").setAttribute("value", longitude);
+
+        //discovery
         document.getElementById("latitude_hidden").setAttribute("value", latitude);
         document.getElementById("longitude_hidden").setAttribute("value", longitude);  
 
@@ -34,6 +37,6 @@ function updateLocation (helper) { {
         document.getElementById("mapView").setAttribute("src", mapURL);
     }
 }
-if (document.getElementById("longitude_hidden").value) {
+if (document.getElementById("longitude_hidden").value && document.getElementById("latitude_hidden").value) {
     LocationHelper.findLocation(updateLocation);
 }

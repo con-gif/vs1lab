@@ -26,7 +26,7 @@
 const GeoTagExamples = require('../models/geotag-examples.js');
 const GeoTag = require('../models/geotag.js');
 class InMemoryGeoTagStore{
-        // TODO: ... your code here ...
+    
     #geotags = [];
     
     //tagliste aus geotag-examples.js
