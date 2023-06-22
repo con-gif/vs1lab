@@ -33,7 +33,8 @@ class InMemoryGeoTagStore{
     constructor() {
         var tagList = GeoTagExamples.tagList;
         for(var i = 0; i < tagList.length; i++) {
-            this.#geotags.push(new GeoTag(tagList[i][1], tagList[i][2], tagList[i][0], tagList[i][3]));
+            this.#geotags.push(new GeoTag(tagList[i][1], tagList[i][2], tagList[i][0], tagList[i][3], i));
+           
         }
     }   
 
@@ -45,12 +46,14 @@ class InMemoryGeoTagStore{
         }
     }
 
-    removeGeoTag(geoTag) {
-        this.#geotags = this.#geotags.filter(function(deleteTag) {
-            return deleteTag.name != geoTag.name;
-            });
-    }
-
+    removeGeoTag(id) {
+        for (let i = 0; i < this.#geotags.length; i++) {
+          if (id == this.#geotags[i].tagId) {
+            this.#geotags.splice(i, 1);
+            break; // Exit the loop after removing the geotag
+          }
+        }
+      }
     getNearbyGeoTags(latitudeIn, longitudeIn) {
         let arrTemp = [];
         for (let i = 0; i < this.#geotags.length; i++) {
@@ -85,7 +88,15 @@ class InMemoryGeoTagStore{
         }
         return arrTemp;
     }
-
+    searchTagByID(id) {
+        var arrTemp = []
+        for (var i = 0; i < this.#geotags.length; i++) {
+            if (id == this.#geotags[i].tagId) {
+              arrTemp.push(this.#geotags[i]);
+            }
+          }
+          return arrTemp; // Return null if no matching GeoTag is found
+        }
 
     get geotags() {
         return this.#geotags;

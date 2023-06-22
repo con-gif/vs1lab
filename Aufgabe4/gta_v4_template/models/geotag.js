@@ -15,11 +15,13 @@ class GeoTag {
     longitude_hidden;
     name_hidden = '';
     hashtag_hidden = '';
-    constructor(latitude, longitude, name, hashtag) {
+    tagId;
+    constructor(latitude, longitude, name, hashtag, id) {
         this.latitude_hidden = latitude;
         this.longitude_hidden = longitude;
         this.name_hidden = name;
         this.hashtag_hidden = hashtag;
+        this.tagId = id;
         return this;
     }
 
@@ -35,6 +37,12 @@ class GeoTag {
     get hashtag() {
         return this.hashtag_hidden;
     }   
+    get id() {
+        return this.tagId;
+    }
+    set id(newId) {
+        this.tagId = newId;
+      }
 }
 
 module.exports = GeoTag;
