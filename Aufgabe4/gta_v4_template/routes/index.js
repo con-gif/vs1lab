@@ -54,6 +54,25 @@ const store = new GeoTagStore();
  */
 
 // TODO: ... your code here ...
+router.get('/api/geotags', (req, res) => {
+  let geotags = store.geotags;
+  let searchterm = req.query.searchterm;
+  let latitude = req.query.latitude;
+  let longitude = req.query.longitude;
+
+  if(searchterm === undefined && latitude === undefined && longitude === undefined) {
+    res.json(geotags);
+  }
+
+  else if(searchterm !== undefined && (latitude === undefined || longitude === undefined)) {
+    geotags = store.searchGeoTags(searchterm);
+  }
+
+  else if(searchterm !== undefined && latitude !== undefined && longitude !== undefined) {
+    geotags = store.searchNearbyGeoTags(searchterm, latitude, longitude);
+  }
+  res.json(geotags);
+});
 
 
 /**

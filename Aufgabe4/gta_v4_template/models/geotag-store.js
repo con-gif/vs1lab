@@ -88,6 +88,17 @@ class InMemoryGeoTagStore{
         }
         return arrTemp;
     }
+    searchGeoTags(keyword){
+    var arrTemp = []; 
+        for ( var i = 0; i < this.#geotags.length; i++) {
+            const tempTag = this.#geotags[i];
+            if(tempTag.hashtag_hidden.includes(keyword) ||tempTag.name_hidden.includes(keyword)) {
+                arrTemp.push(this.#geotags[i]);
+            }
+        }
+        return arrTemp;
+    }
+
     searchTagByID(id) {
         var arrTemp = []
         for (var i = 0; i < this.#geotags.length; i++) {
