@@ -34,6 +34,76 @@ function updateLocation (helper) { {
         document.getElementById("mapView").setAttribute("src", mapURL);
     }
 }
+
+function addTag(event) {
+    event.preventDefault();
+
+    const latitude = document.getElementById("latitude_in").value;
+    const longitude = document.getElementById("longitude_in").value;
+    const tagname = document.getElementById("name_in").value;
+    const hashtag = document.getElementById("hashtag_in").value;
+
+    const data = {
+       "latitude_hidden" : latitude,
+       "longitude_hidden" : longitude,
+       "name_hidden" : tagname,
+       "hashtag_hidden" : hashtag
+    }
+
+    postGeoTag("http://localhost:3000/api/geotags", data)
+    .catch(err => console.error(err));
+
+    getGeoTags("http://localhost:3000/api/geotags").then(data=>updateGeoTags(data));
+}
+
+function searchTag(event) {
+    event.preventDefault();
+
+    const searchTerm = document.getElementById("query_in").value;
+    const url = `http://localhost:3000/api/geotags/?searchterm=${searchTerm}`;
+
+    getGeoTags(url)
+        .then(data => updateGeoTags(data));
+}
+
+
+async function postGeoTag(url, data) {
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+    return response;
+}
+
+async function getGeoTags(url) {
+    const response = await fetch(url, {
+        method: "GET",
+        headers:{"Content-Type": "application/json"},
+    });
+    return response.json();
+}
+
+
+
+var updateGeoTags = function (geoTags) {
+    let imageView = document.getElementById("mapView");
+    imageView.dataset.tags = JSON.stringify(geoTags);
+    LocationHelper.findLocation(updateLocation);
+
+    var geos = document.getElementById("discoveryResults");
+    geos.innerHTML = null;
+    for (var key in geoTags) {
+        var li = document.createElement("li");
+        li.innerHTML = geoTags[key].name_hidden + " (" + geoTags[key].latitude_hidden + "," + geoTags[key].longitude_hidden + ") " + geoTags[key].hashtag_hidden;
+        li.id = "discoveryResultGeoTags";
+        geos.appendChild(li);
+    }
+};
+
 if (JSON.stringify(document.getElementById("longitude_hidden").value)) {
     LocationHelper.findLocation(updateLocation);
   }
+
+  add_button.addEventListener("click", addTag);
+  discovery_buton.addEventListener("click", searchTag);
