@@ -24,7 +24,7 @@ class GeoTag {
         this.tagId = id;
         return this;
     }
-
+ 
     get latitude() {
         return this.latitude_hidden;
     }
@@ -37,12 +37,9 @@ class GeoTag {
     get hashtag() {
         return this.hashtag_hidden;
     }   
-    get id() {
-        return this.tagId;
-    }
-    set id(newId) {
-        this.tagId = newId;
-      }
+
+
+
 }
 
 module.exports = GeoTag;

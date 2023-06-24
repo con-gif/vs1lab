@@ -100,15 +100,19 @@ class InMemoryGeoTagStore{
     }
 
     searchTagByID(id) {
-        var arrTemp = []
-        for (var i = 0; i < this.#geotags.length; i++) {
-            if (id == this.#geotags[i].tagId) {
-              arrTemp.push(this.#geotags[i]);
-            }
+      var arrTemp = [];
+      for (var i = 0; i < this.#geotags.length; i++) {
+          if (id == this.#geotags[i].tagId) {
+              // Create a new GeoTag object without the ID
+              const { latitude, longitude, name, hashtag } = this.#geotags[i];
+              const geoTagWithoutID = new GeoTag(latitude, longitude, name, hashtag);
+              arrTemp.push(geoTagWithoutID);
           }
-          return arrTemp; // Return null if no matching GeoTag is found
-        }
-
+      }
+      return arrTemp; // Return null if no matching GeoTag is found
+  }
+        
+  
     get geotags() {
         return this.#geotags;
     }   
