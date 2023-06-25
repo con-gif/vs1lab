@@ -53,25 +53,21 @@ const store = new GeoTagStore();
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
 
-// TODO: ... your code here ...
+// logik der if-else Anweisungen nicht richtig-> Antwort mehr als einmal gesendet werden kann
 router.get('/api/geotags', (req, res) => {
   let geotags = store.geotags;
   let searchterm = req.query.searchterm;
   let latitude = req.query.latitude;
   let longitude = req.query.longitude;
 
-  if(searchterm === undefined && latitude === undefined && longitude === undefined) {
-    res.json(geotags);
-  }
-
-  else if(searchterm !== undefined && (latitude === undefined || longitude === undefined)) {
+  if(searchterm !== undefined && (latitude === undefined || longitude === undefined)) {
     geotags = store.searchGeoTags(searchterm);
-  }
-
+  } 
   else if(searchterm !== undefined && latitude !== undefined && longitude !== undefined) {
     geotags = store.searchNearbyGeoTags(searchterm, latitude, longitude);
   }
-  res.json(geotags);
+
+  return res.json(geotags);
 });
 
 
