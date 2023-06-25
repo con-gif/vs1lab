@@ -80,9 +80,10 @@ class InMemoryGeoTagStore{
     searchNearbyGeoTags(keyword, latitude, longitude){
         var NearbyGeoTags = this.getNearbyGeoTags(latitude, longitude)
         var arrTemp = []; 
+        keyword = keyword.toLowerCase(); // convert keyword to lowercase
         for ( var i = 0; i < NearbyGeoTags.length; i++) {
             const tempTag = NearbyGeoTags[i];
-            if(tempTag.hashtag_hidden.includes(keyword) ||tempTag.name_hidden.includes(keyword)) {
+            if(tempTag.hashtag_hidden.toLowerCase().includes(keyword) ||tempTag.name_hidden.toLowerCase().includes(keyword)) {
                 arrTemp.push(NearbyGeoTags[i]);
             }
         }
@@ -90,9 +91,10 @@ class InMemoryGeoTagStore{
     }
     searchGeoTags(keyword){
     var arrTemp = []; 
+    keyword = keyword.toLowerCase(); // convert keyword to lowercase
         for ( var i = 0; i < this.#geotags.length; i++) {
             const tempTag = this.#geotags[i];
-            if(tempTag.hashtag_hidden.includes(keyword) ||tempTag.name_hidden.includes(keyword)) {
+            if(tempTag.hashtag_hidden.toLowerCase().includes(keyword) ||tempTag.name_hidden.toLowerCase().includes(keyword)) {
                 arrTemp.push(this.#geotags[i]);
             }
         }
