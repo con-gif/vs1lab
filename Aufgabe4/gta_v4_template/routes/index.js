@@ -82,10 +82,11 @@ router.get('/api/geotags', (req, res) => {
  * The new resource is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
+
 router.post('/api/geotags', (req, res) => {
   const { latitude_hidden, longitude_hidden, name_hidden, hashtag_hidden } = req.body;
-  const newId = store.geotags.length;
+  const maxId = Math.max(...store.geotags.map(geoTag => geoTag.tagId));
+  const newId = isFinite(maxId) ? maxId + 1 : 0;
   const geoTag = new GeoTag(latitude_hidden, longitude_hidden, name_hidden, hashtag_hidden, newId);
   store.addGeoTag(geoTag);
   res.setHeader('Location', '/api/geotags/' + geoTag.tagId);
@@ -102,7 +103,14 @@ router.post('/api/geotags', (req, res) => {
  * The requested tag is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
+/*
+router.get('/api/geotags/:id', (req, res) => {
+  let geoTagId = req.params.id;
+  let foundTag = store.searchTagByID(geoTagId);
+  res.status(200).json(foundTag);
+});
+
+*/
 router.get('/api/geotags/:id', (req, res) => {
   let geoTagId = req.params.id;
   let foundTag = store.searchTagByID(geoTagId);
@@ -114,6 +122,7 @@ router.get('/api/geotags/:id', (req, res) => {
     res.status(404).send("Invalid ID");
   }
 });
+
 
 
 /**
@@ -130,7 +139,6 @@ router.get('/api/geotags/:id', (req, res) => {
  * The updated resource is rendered as JSON in the response. 
  */
 
-// TODO: ... your code here ...
 router.put('/api/geotags/:id', (req, res) => {
   let geoTagId = req.params.id;
   let foundTag = store.searchTagByID(geoTagId);
@@ -153,6 +161,7 @@ router.put('/api/geotags/:id', (req, res) => {
   }
 });
 
+
 /**
  * Route '/api/geotags/:id' for HTTP 'DELETE' requests.
  * (http://expressjs.com/de/4x/api.html#app.delete.method)
@@ -168,11 +177,8 @@ router.put('/api/geotags/:id', (req, res) => {
 router.delete('/api/geotags/:id', (req, res) => {
   let geoTagId = req.params.id;
   let foundTag = store.searchTagByID(geoTagId);
-  if(store.removeGeoTag(geoTagId)){
+  store.removeGeoTag(geoTagId);
   res.status(200).json(foundTag);
-} else {
-  res.status(404).send("Not found");
-}
 });
 
 

@@ -7,17 +7,17 @@ POST http://localhost:3000/api/geotags
 Content-Type : application/json
 
   {
-    "latitude_hidden": 49.01379,
+    "latitude_hidden": 49.013279,
     "longitude_hidden": 8.404435,
     "name_hidden": "Hallo",
     "hashtag_hidden": "#Hi"
   }
 
 ### Request 3
-GET http://localhost:3000/api/geotags/11    
+GET http://localhost:3000/api/geotags/17 
 
 ### Request 4
-PUT http://localhost:3000/api/geotags/12
+PUT http://localhost:3000/api/geotags/17
 Content-Type : application/json
 
   {
