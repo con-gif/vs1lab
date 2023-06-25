@@ -110,8 +110,15 @@ router.post('/api/geotags', (req, res) => {
 router.get('/api/geotags/:id', (req, res) => {
   let geoTagId = req.params.id;
   let foundTag = store.searchTagByID(geoTagId);
-  res.status(200).json(foundTag);
+
+  // Check if foundTag is an empty array
+  if(foundTag && foundTag.length > 0) {
+    res.status(200).json(foundTag);
+  } else {
+    res.status(404).send("Invalid ID");
+  }
 });
+
 
 /**
  * Route '/api/geotags/:id' for HTTP 'PUT' requests.
@@ -131,15 +138,24 @@ router.get('/api/geotags/:id', (req, res) => {
 router.put('/api/geotags/:id', (req, res) => {
   let geoTagId = req.params.id;
   let foundTag = store.searchTagByID(geoTagId);
+
+  // Check if geotag exists before trying to update it
+  if (!foundTag) {
+    res.status(404).json({ message: 'Geotag not found' });
+    return;
+  }
+
   store.removeGeoTag(geoTagId);
   const { latitude_hidden, longitude_hidden, name_hidden, hashtag_hidden} = req.body;
   const geoTag = new GeoTag(latitude_hidden, longitude_hidden, name_hidden, hashtag_hidden, geoTagId);
-  // Add the new geotag to the store
-  store.addGeoTag(geoTag);
-  // Return the new resource as JSON in the response
-  res.status(201).json(geoTag);
-});
 
+  // Add the new geotag to the store
+  if(store.addGeoTag(geoTag)){
+    res.status(200).json({ message: 'Geotag updated successfully', geotag: geoTag });
+  } else {
+    res.status(500).json({ message: 'An error occurred while updating the geotag' });
+  }
+});
 
 /**
  * Route '/api/geotags/:id' for HTTP 'DELETE' requests.
@@ -156,8 +172,11 @@ router.put('/api/geotags/:id', (req, res) => {
 router.delete('/api/geotags/:id', (req, res) => {
   let geoTagId = req.params.id;
   let foundTag = store.searchTagByID(geoTagId);
-  store.removeGeoTag(geoTagId);
+  if(store.removeGeoTag(geoTagId)){
   res.status(200).json(foundTag);
+} else {
+  res.status(404).send("Not found");
+}
 });
 
 

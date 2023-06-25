@@ -14,7 +14,7 @@ Content-Type : application/json
   }
 
 ### Request 3
-GET http://localhost:3000/api/geotags/11
+GET http://localhost:3000/api/geotags/11    
 
 ### Request 4
 PUT http://localhost:3000/api/geotags/11

@@ -41,8 +41,10 @@ class InMemoryGeoTagStore{
     addGeoTag(geoTag) {
         if(geoTag instanceof GeoTag) {
             this.#geotags.push(geoTag);
+            return true;
         } else {
             console.log("Not a GeoTag");
+            return false;
         }
     }
 
