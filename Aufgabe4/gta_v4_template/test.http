@@ -1,0 +1,36 @@
+### Request 1
+GET http://localhost:3000/api/geotags 
+Content-Type: : application/json
+
+### Request 2
+POST http://localhost:3000/api/geotags 
+Content-Type : application/json
+
+  {
+    "latitude_hidden": 49.01379,
+    "longitude_hidden": 8.404435,
+    "name_hidden": "Hallo",
+    "hashtag_hidden": "#Hi"
+  }
+
+### Request 3
+GET http://localhost:3000/api/geotags/11
+
+### Request 4
+PUT http://localhost:3000/api/geotags/11
+Content-Type : application/json
+
+  {
+    "latitude_hidden": 49.01379,
+    "longitude_hidden": 8.404435,
+    "name_hidden": "Bye",
+    "hashtag_hidden": "#Bye"
+  }
+
+### Request 5
+DELETE  http://localhost:3000/api/geotags/11
+
+### Request 6
+GET http://localhost:3000/api/geotags 
+
+
